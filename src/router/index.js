@@ -14,7 +14,7 @@ const requireAuth = (to, from, next) => {
   if (!user) {
     next({ name: 'Home' })
   } else {
-    next({name: 'Lessons'})
+    next()
   }
 }
 

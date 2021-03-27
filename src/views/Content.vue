@@ -10,11 +10,7 @@
         <div class="container px-8 pt-5 pb-8 mx-auto lg:px-4">
             <div
                 class="flex flex-col w-full p-8 mx-auto mt-5 lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0">
-        
-        <router-link :to="`/lessons/${lesson.id}/start`">
-            <button
-@click="handleSubmit" class="px-8 py-2 font-semibold text-white transition duration-500 ease-in-out transform bg-black rounded-lg hover:bg-gray-800 hover:to-black focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">Start Lesson</button>
-        </router-link>
+            <button @click="handleSubmit" class="px-8 py-2 font-semibold text-white transition duration-500 ease-in-out transform bg-black rounded-lg hover:bg-gray-800 hover:to-black focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">Start Lesson</button>
         </div>		
             </div>
 	
@@ -27,18 +23,21 @@
 <script>
 import ContentList from '@/components/ContentList.vue'
 import AddContent from '@/components/AddContent.vue'
-import { computed, ref, onMounted} from 'vue'
-import getCollection from '../composables/getCollection'
-import { useRoute, useRouter } from 'vue-router'
 import getDocument from '@/composables/getDocument'
-import useDocument from '../composables/useDocument'
+import { useRoute, useRouter } from 'vue-router'
+
+
 export default {
+    props: ['id'],
     components: { AddContent, ContentList },
-    setup() {
-        const route = useRoute()
-        const lessonId = computed(() => route.params.id)
-        const {document:lesson} = getDocument('lessons', lessonId.value)
-    return {lesson}
+    setup(props) {
+        const router = useRouter()
+        const {document:lesson} = getDocument('lessons', props.id)
+
+        const handleSubmit = () => {
+            router.push({ name: 'LessonSlides' })
+        }
+    return {lesson, handleSubmit}
     }
     
 }
