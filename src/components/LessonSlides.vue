@@ -1,40 +1,38 @@
 <template>
-  <vueper-slides  >
-  <vueper-slide v-for="content in lesson.contents" :key="content || content.id" :style="'background-color: #F7E7CE'">
+  <vueper-slides>
+  <vueper-slide
+    v-for="content in lesson.contents" :key="content.id" :style="'background-color: #F7E7CE'">
     <template v-slot:content>
-        <div class="flex min-h-screen ">
-            <div class="container mx-auto">
-        <div class="card-slide" v-if="!lesson.contents.length">
-            <i class="icon icon-check"></i>
-              {{ content.detail }}
-        </div>
-        </div>
-        </div>
+     <i class="icon icon-check"></i>
+    {{ content.detail }}
+    </template>
+  </vueper-slide>
+</vueper-slides>
+
+
+  <!-- <vueper-slides  >
+  <vueper-slide  >
+    <template v-slot:content>
+    
      
      
     </template>
   </vueper-slide>
-</vueper-slides>
+</vueper-slides> -->
 </template>
 
 <script>
-
-import { computed, ref, onMounted} from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import getDocument from '@/composables/getDocument'
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 export default {
+    props: ['id'],
     components: { VueperSlides, VueperSlide },
-    setup() {
-        const route = useRoute()
-        const contents = ref('')
-        const lessonId = computed(() => route.params.id)
-        const {document:lesson} = getDocument('lessons', lessonId.value)
-        console.log(lesson)
-    return {lesson, contents, lessonId}
-    }
-    
+    setup(props) {
+      const { error, document: lesson } = getDocument('lessons', props.id)
+
+    return { error, lesson }
+}
 }
 </script>
 
