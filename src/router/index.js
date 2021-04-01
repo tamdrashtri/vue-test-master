@@ -38,7 +38,7 @@ const routes = [
     beforeEnter: requireAuth
   },
   {
-    path: "/lessons/content/:id",
+    path: "/lessons/:id",
     name: "Content",
     component: Content,
     props: true,

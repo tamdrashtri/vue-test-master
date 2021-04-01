@@ -9,8 +9,8 @@
         <router-link :to="`/lessons/edit/${lesson.id}`">
             <a href="#" class="no-underline mr-4 text-blue-500 hover:text-blue-400">Edit</a>
         </router-link>
-        <a href="#" @click="handleDelete" class="no-underline mr-4 text-blue-500 hover:text-blue-400">Delete</a>
-        <router-link :to="`/lessons/content/${lesson.id}`">
+        <a href="#" @click="deleteLesson(lesson.id)" class="no-underline mr-4 text-blue-500 hover:text-blue-400">Delete</a>
+        <router-link :to="`/lessons/${lesson.id}`">
             <a href="#" class="no-underline mr-4 text-blue-500 hover:text-blue-400">Add Content</a>
         </router-link>
     </div>
@@ -23,6 +23,7 @@
 
 <script>
 import useDocument from '@/composables/useDocument'
+import {deleteLesson} from '../composables/useDocument'
 
 export default {
     props: ['lessons'],
@@ -33,7 +34,7 @@ export default {
             await deleteDoc()
             console.log(deleteDoc())
     }
-    return {handleDelete, deleteDoc}
+    return {handleDelete, deleteLesson}
     }
 }
 </script>

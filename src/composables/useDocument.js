@@ -39,8 +39,24 @@ const useDocument = (collection, id) => {
     }
   }
 
+
+
   return { error, isPending, deleteDoc, updateDoc }
 
 }
+
+const lessonsCollection = projectFirestore.collection('lessons')
+
+  export const updateDoc2 = (id, lesson) => {
+    return lessonsCollection.doc(id).update(lesson)
+  }
+  export const getLesson = async id => {
+    const lesson = await lessonsCollection.doc(id).get()
+    return lesson.exists ? lesson.data() : null
+  }
+
+  export const deleteLesson = id => {
+    return lessonsCollection.doc(id).delete()
+  }
 
 export default useDocument
