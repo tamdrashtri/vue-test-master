@@ -54,12 +54,11 @@ import getDocument from "@/composables/getDocument";
 
 
 export default {
-  name: "Content",
+  name: 'Content',
   props: ["id"],
   components: { AddContent, ContentList },
   setup(props) {
     const { document: lesson } = getDocument("lessons", props.id);
-
     return { lesson };
   },
 };

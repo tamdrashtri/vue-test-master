@@ -30,12 +30,13 @@
 import { ref } from "vue";
 import useDocument from "../composables/useDocument";
 export default {
+  name: 'AddContent',
   props: ["lesson"],
   setup(props) {
     const detail = ref("");
     const { updateDoc } = useDocument("lessons", props.lesson.id);
     const isPending = ref(false)
-    console.log(props.lesson.contents, props.lesson.id)
+    console.log(props.lesson.id)
     const handleSubmit = async () => {
       isPending.value = true
       const newContent = {
