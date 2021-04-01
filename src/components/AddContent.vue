@@ -7,7 +7,7 @@
         <form @submit.prevent="handleSubmit">
           <div v-if="!isPending" class="relative">
             <label for="name" class="text-sm leading-7 text-gray-600"
-              >Create a title</label
+              >Compose messages to explain a concept</label
             >
             <textarea
               v-model="detail"
@@ -33,9 +33,9 @@ export default {
   props: ["lesson"],
   setup(props) {
     const detail = ref("");
-    const { updateDoc } = useDocument("lessons", props.id);
+    const { updateDoc } = useDocument("lessons", props.lesson.id);
     const isPending = ref(false)
-
+    console.log(props.lesson.contents, props.lesson.id)
     const handleSubmit = async () => {
       isPending.value = true
       const newContent = {
@@ -44,7 +44,7 @@ export default {
       };
       isPending.value = false
       const res = await updateDoc({
-        contents: [...props.contents, newContent],
+        contents: [...props.lesson.contents, newContent]
       });
       
       detail.value = "";

@@ -1,6 +1,5 @@
 <template>
   <section class="text-gray-700 body-font">
-        <h2>{{lesson.title}}</h2>
             <div class="container px-8 pt-24 pb-24 mx-auto lg:px-4">
                 <div
                     class="flex flex-col w-full p-8 mx-auto mt-10 border rounded-lg lg:w-2/6 md:w-1/2 md:ml-auto md:mt-0">
@@ -12,7 +11,7 @@
                     </div>
         
                     <button @click="update"
-                        class="px-8 py-2 font-semibold text-white transition duration-500 ease-in-out transform bg-black rounded-lg hover:bg-gray-800 hover:to-black focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">Create</button>
+                        class="px-8 py-2 font-semibold text-white transition duration-500 ease-in-out transform bg-black rounded-lg hover:bg-gray-800 hover:to-black focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">Update</button>
                 </div>
             </div>
         </section>
